@@ -1,0 +1,54 @@
+<div class="container cart">
+    @if(ViewBag.cart!=null){
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col"></th>
+            <th scope="col">Product Model</th>
+            <th scope="col">Product Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total Price</th>
+            <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.cart)
+            {
+                string name = @item.item.Name+".jpg";
+            <tr>
+                <th scope="row"><img src="~/images/@name" class="cart-img" alt=""></th>
+                <td>@item.item.Name</td>
+                <td>@item.item.Price</td>
+                <td><form action="update/@item.item.ItemId" method="post">
+                    <input type="number" name="Quant" value="@item.Quant" >
+                    <button type="submit" class="but">update</button>
+                    </form>
+                    </td>
+                <td>@(item.item.Price*item.Quant)</td>
+                <td>
+                    <a href="delete/@item.item.ItemId" class="but">delete</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <p>Sum: $@ViewBag.total</p>
+    <p>shipping: 10$</p>
+    <p>Toal: $@(ViewBag.total+10) <small> before tax</small></p> 
+    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_xclick">
+        <input type="hidden" name="business" value="proj@proj.com">
+        <input type="hidden" name="item_name" value="Furniture">
+        <input type="hidden" name="item_number" value="1">
+        <input type="hidden" name="amount" value="@ViewBag.total">
+        <input type="hidden" name="shipping" value="10">
+        <input type="hidden" name="no_note" value="1">
+        <input name="tax" type="hidden" value="15">
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="hidden" name="bn" value="PP-BuyNow">
+        <input type="hidden" name="return" value="http://localhost:5000/">
+        <input type="submit" value="Check out with PayPal">
+    </form>}else{
+        <h3>Your cart is empty :(</h3>
+    }
+</div>

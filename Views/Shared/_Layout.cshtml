@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proj</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+			integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+			crossorigin="anonymous"></script>
+            <script src="https://www.paypalobjects.com/api/checkout.js" async></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <script src="~/js/site.js"></script>
+        <script src="https://www.paypalobjects.com/api/checkout.js" async></script>
+        <script
+			  src="https://code.jquery.com/jquery-3.4.1.js"
+			  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+			  crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css">
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script
+			  src="https://code.jquery.com/jquery-3.4.1.js"
+			  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+			  crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+        <script src="~/js/site.js"></script>
+        <script src="https://www.paypalobjects.com/api/checkout.js" async></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+    </environment>
+</head>
+<body>
+    <div id="load"></div>
+    <header>
+    <nav>
+        <ul id="left-nav">
+            <li id="outter"><a asp-action="Index" asp-controller="Home">Home</a></li>
+            <li id="outter"><a href="#" >Shop</a>
+                <div class="dropdown">
+                    <ul class="inner" id="inner1">
+                        <li><strong>Bathroom</strong></li>
+                        <li>sinks</li>
+                        <li>cabinets</li>
+                        <li>faucets</li>
+                        <li>mirrors</li>
+                        <li>textile</li>
+                        <li>showers</li>
+                    </ul>
+                    <ul class="inner" id="inner2">
+                        <li><strong>Dining</strong></li>
+                        <li><a href="/DinningTables">tables</a></li>
+                        <li>chairs</li>
+                        <li>storage</li>
+                        <li>tools</li>
+                    </ul>
+                    <ul class="inner" id="inner3">
+                        <li><strong>Bedroom</strong></li>
+                        <li>beds</li>
+                        <li>wardrobes</li>
+                        <li>mattresses</li>
+                        <li>storage</li>
+                        <li>textile</li>
+                        <li>lighting</li>
+                        <li>mirrors</li>
+                    </ul>
+                </div>
+            </li> 
+            <li id="outter"><a href="#" >About</a></li>
+            <li id="outter"><a asp-action="contact" asp-controller="Home" >Contact</a></li> 
+        </ul>
+        <p id="logo"><i class="fas fa-kiwi-bird"></i></p>
+        <ul id="right-nav">
+            <li><p>Search</p></li>
+            <li><p class="i"><i class="fas fa-shopping-cart"></i></p>
+                <a href="cart">Cart</a></li>
+        </ul>
+    </nav>
+    </header>
+
+        @RenderBody()
+
+    <environment include="Development">
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-5">
+                <h2><strong>Kiwi Fur</strong></h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias sunt beatae repellendus sed iure rem voluptatum natus, quas non perferendis?</p>
+                <div class="info-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p class="i"><strong>Out address</strong></p>
+                    <p>123 main street, Los Angeles</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-phone"></i>
+                    <p class="i"><strong>Phone</strong></p>
+                    <p>Office: (800) 123 456 789 </p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-at"></i>
+                    <p class="i"><strong>Email</strong></p>
+                    <p>Email: contact&#64;example.com</p>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <h3>Information</h3>
+                <p><a href="#">About Us</a></p>
+                <p><a href="#">Careers</a></p>
+                <p><a href="#">Delivery Information</a></p>
+                <p><a href="#">Privacy Policy</a></p>
+                <p><a href="#">Terms & Condition</a></p>
+            </div>
+            <div class="col-sm-3">
+                <h3>Customer Service</h3>
+                <p><a href="#">Shipping Policy</a></p>
+                <p><a href="#">Help & Contact Us</a></p>
+                <p><a href="#">Returns & Refunds</a></p>
+                <p><a href="#">Online Stores</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

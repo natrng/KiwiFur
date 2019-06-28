@@ -1,0 +1,46 @@
+<script>
+    var controller = new ScrollMagic.Controller();
+</script>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-5" id="txt-container">
+            <h3>DINING TABLE</h3>
+            <p><strong>Tables aren't just for work, some are for fun</strong></p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint culpa ratione tempora suscipit saepe, placeat necessitatibus quaerat quos vel praesentium et libero architecto voluptatem ea illo! Aspernatur harum sit voluptas magnam explicabo porro sapiente, molestiae asperiores corporis deserunt unde consectetur obcaecati enim similique maxime. Suscipit reiciendis illum nobis doloribus ducimus!</small></p>
+        </div>
+        <div class="col-sm-7" id="img-container">
+            <img src="~/images/Table.jpg" alt="">
+        </div>
+    </div>
+    <table class="table table-borderless" id="tables-table">
+        <tbody>
+            @foreach (var item in ViewBag.allTables)
+            {
+                string name = @item.Name+".jpg";
+            <tr class="item-tab digit">
+                <td><img class="desc-img" src="~/images/@name" alt="@item.Name"></td>
+                <td colspan="2">
+                    <p><strong>Model Name:</strong></p>
+                    <p>@item.Name</p></td>
+                <td>
+                    <p><strong>Price:</strong></p>
+                    <p>@item.Price</p>
+                </td>
+                <td>
+                    <a href="addToC/@item.ItemId">Add to cart!</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script>
+    var elements = document.getElementsByClassName('item-tab');
+    for(var i=0; i<elements.length; i++){
+        new ScrollMagic.Scene({
+            triggerElement: elements[i],
+            triggerHook : 0.75
+        }).setClassToggle(elements[i], "show")
+        .addTo(controller);
+        }
+</script>

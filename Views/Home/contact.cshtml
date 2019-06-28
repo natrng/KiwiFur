@@ -1,0 +1,160 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3><strong>Contact Info</strong></h3>
+            <div class="info-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <p class="i"><strong>Out address</strong></p>
+                <p>123 main street, Los Angeles</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-phone"></i>
+                <p class="i"><strong>Phone</strong></p>
+                <p>Office: (800) 123 456 789 </p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-at"></i>
+                <p class="i"><strong>Email</strong></p>
+                <p>Email: contact&#64;example.com</p>
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab repudiandae sit adipisci repellat esse ut reiciendis officia ipsam accusamus blanditiis alias unde vel voluptatum quos atque minus, porro officiis tempore dignissimos repellendus harum veniam provident optio? Deserunt rem sit quos.</p>
+        </div>
+        <div class="col-sm-6">
+            <h3><strong>Contact Form</strong></h3>
+            <form action="message" method="post">
+                <div class="form-group">
+                    <input type="text" placeholder="Name" name="name" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email" name="email" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="">Comment</label>
+                </div>
+                <div class="form-group">
+                    <textarea name="content" class="form-control"></textarea>
+                </div>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="WedLoc" value="3335 Susan Street #200, Costa Mesa, CA">
+<div id="map"></div>
+<script>
+    function initMap() 
+    {
+        geocoder = new google.maps.Geocoder();
+        var latlng = new google.maps.LatLng(53.3496, -6.3263);
+        var mapOptions = 
+        {
+            zoom: 11,
+            center: latlng,
+            disableDefaultUI: true,
+            styles: [
+            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+            {
+              featureType: 'administrative.locality',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'geometry',
+              stylers: [{color: '#263c3f'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#6b9a76'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry',
+              stylers: [{color: '#38414e'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#212a37'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#9ca5b3'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry',
+              stylers: [{color: '#746855'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#1f2835'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#f3d19c'}]
+            },
+            {
+              featureType: 'transit',
+              elementType: 'geometry',
+              stylers: [{color: '#2f3948'}]
+            },
+            {
+              featureType: 'transit.station',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'geometry',
+              stylers: [{color: '#17263c'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#515c6d'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.stroke',
+              stylers: [{color: '#17263c'}]
+            }
+          ]
+        }
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        codeAddress(address);//call the function
+    }
+    var address = document.getElementById('WedLoc').value;
+    function codeAddress(address) 
+    {
+    geocoder.geocode( {"address":address}, function(results, status) 
+    {
+        if (status == google.maps.GeocoderStatus.OK) 
+        {
+        map.setCenter(results[0].geometry.location);//center the map over the result
+        //place a marker at the location
+        var marker = new google.maps.Marker(
+        {
+            map: map,
+            position: results[0].geometry.location
+        });
+        } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+    }
+    });
+    }
+</script>
+<script
+src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap">
+</script>
